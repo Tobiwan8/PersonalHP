@@ -56,28 +56,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         behavior: 'smooth'
       });
     });
-  });
+});
   
-  // Add snap scrolling behavior
-  document.querySelectorAll('section').forEach(section => {
+// Add snap scrolling behavior
+document.querySelectorAll('section').forEach(section => {
     section.addEventListener('scroll', function() {
-      const threshold = 0.4;
-      const scrollTop = section.scrollTop;
-      const scrollHeight = section.scrollHeight;
-      const clientHeight = section.clientHeight;
-  
-      // Find the section that is most visible and snap to it
-      const sections = document.querySelectorAll('section');
-      for (let i = 0; i < sections.length; i++) {
-        const top = sections[i].offsetTop;
-        const height = sections[i].offsetHeight;
-        const visible = Math.max(0, Math.min(top + height, scrollTop + clientHeight) - Math.max(top, scrollTop)) / height;
-        if (visible >= threshold) {
-          sections[i].scrollIntoView({
-            behavior: 'smooth'
-          });
-          break;
+        const threshold = 0.2;
+        const scrollTop = section.scrollTop;
+        const scrollHeight = section.scrollHeight;
+        const clientHeight = section.clientHeight;
+    
+        // Find the section that is most visible and snap to it
+        const sections = document.querySelectorAll('section');
+        for (let i = 0; i < sections.length; i++) {
+            const top = sections[i].offsetTop;
+            const height = sections[i].offsetHeight;
+            const visible = Math.max(0, Math.min(top + height, scrollTop + clientHeight) - Math.max(top, scrollTop)) / height;
+            if (visible >= threshold) {
+            sections[i].scrollIntoView({
+                behavior: 'smooth'
+            });
+            break;
+            }
         }
-      }
     });
-  });
+});
