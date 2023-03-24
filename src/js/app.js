@@ -1,14 +1,16 @@
+//Blob follow cursor
 const blob = document.getElementById("blob");
-
 document.body.onpointermove = event => {
     const { clientX, clientY } = event;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     blob.animate({
         left: `${clientX}px`,
-        top: `${clientY}px`
+        top: `${clientY + scrollTop}px`
     }, {duration: 3000, fill: "forwards"});
 }
 
+//Navbar hover effect
 const letters = "abcdefghijklmnopqrstuvwxyzæøå";
 for (const navButton of document.getElementsByClassName("navButton")) {
     navButton.onmouseover = event => {
@@ -30,3 +32,17 @@ for (const navButton of document.getElementsByClassName("navButton")) {
         }, 30);
     }
 }
+
+//Scroll effect
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry)
+        if(entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }else {
+            entry.target.classList.remove('show');
+        }
+    });
+});
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
